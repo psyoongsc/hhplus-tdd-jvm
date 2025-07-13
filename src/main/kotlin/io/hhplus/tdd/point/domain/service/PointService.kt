@@ -34,4 +34,12 @@ class PointService(
 
         return GetPointResult.fromEntity(userPoint)
     }
+
+    fun getPointHistory(command: GetPointHistoryCommand): GetPointHistoryResult {
+        val id = command.id
+
+        val histories: List<PointHistory> = pointHistoryRepository.selectAllByUserId(id)
+
+        return GetPointHistoryResult.fromEntityList(histories)
+    }
 }
